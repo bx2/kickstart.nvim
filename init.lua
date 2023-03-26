@@ -265,7 +265,7 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set("n", "Q", "<nop>")
 
 -- Exit nicely
-vim.keymap.set('n', '<leader>x', ':q<Return>', { desc = "Exit nvim nicely" })
+vim.keymap.set('n', '<leader>x', ':q!<Return>', { desc = "Exit nvim nicely" })
 
 -- Beg/end of the line
 vim.keymap.set('n', 'H', '^')
@@ -379,8 +379,8 @@ require('nvim-treesitter.configs').setup {
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+vim.keymap.set('n', '<leader>qe', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+vim.keymap.set('n', '<leader>qq', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
 -- Splits
 vim.keymap.set('n', '<leader>tv', ':vsplit<Return><C-w>w', { desc = "Spli[t] [v]ertically", silent = true })
@@ -390,7 +390,7 @@ vim.keymap.set('n', '<leader>th', ':split<Return><C-w>w', { desc = "Spli[t] [h]o
 vim.keymap.set('n', '<leader>f', vim.cmd.Ex, { desc = "Display netrw" })
 
 -- Show copilot panel
-vim.keymap.set('n', '<leader>p', vim.cmd.Ex, { desc = "Display Copilot's panel" })
+vim.keymap.set('n', '<leader>qp', ':Copilot panel<cr>', { desc = "Display Copilot's panel" })
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
