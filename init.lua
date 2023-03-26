@@ -211,6 +211,28 @@ vim.o.termguicolors = true
 -- Do not wrap text
 vim.wo.wrap = false
 
+-- Configure netrw
+vim.g.netrw_browse_split = 0
+vim.g.netrw_banner = 0
+vim.g.netrw_winsize = 25
+
+-- Splits configuration
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
+-- no swaps or backups
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undofile = true
+
+-- update terminal title
+vim.opt.title = true
+
+-- save automatically
+vim.opt.autowrite = true
+vim.opt.autowriteall = true
+
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
@@ -340,6 +362,9 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagn
 -- Splits
 vim.keymap.set('n', '<leader>tv', ':vsplit<Return><C-w>w', { desc = "Spli[t] [v]ertically", silent = true })
 vim.keymap.set('n', '<leader>th', ':split<Return><C-w>w', { desc = "Spli[t] [h]orizontally", silent = true })
+
+-- Show netrw
+vim.keymap.set('n', '<leader>f', vim.cmd.Ex, { desc = "Display netrw" })
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
