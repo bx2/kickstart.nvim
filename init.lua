@@ -261,6 +261,16 @@ vim.opt.autowriteall = true
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
+-- Disable Q
+vim.keymap.set("n", "Q", "<nop>")
+
+-- Exit nicely
+vim.keymap.set('n', '<leader>x', '<cmd>q<cr>')
+
+-- Beg/end of the line
+vim.keymap.set('n', 'H', '^')
+vim.keymap.set('n', 'L', '$')
+
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
