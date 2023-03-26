@@ -74,6 +74,7 @@ require('lazy').setup({
     },
   },
 
+  -- Set the colortheme
   {
     'rose-pine/neovim',
     priority = 1000,
