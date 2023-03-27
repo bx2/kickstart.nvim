@@ -379,18 +379,18 @@ require('nvim-treesitter.configs').setup {
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
-vim.keymap.set('n', '<leader>qe', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
-vim.keymap.set('n', '<leader>qq', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+vim.keymap.set('n', '<leader>de', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
 
 -- Splits
-vim.keymap.set('n', '<leader>tv', ':vsplit<Return><C-w>w', { desc = "Spli[t] [v]ertically", silent = true })
-vim.keymap.set('n', '<leader>th', ':split<Return><C-w>w', { desc = "Spli[t] [h]orizontally", silent = true })
+vim.keymap.set('n', '<leader>sv', ':vsplit<Return><C-w>w', { desc = "Split vertically", silent = true })
+vim.keymap.set('n', '<leader>sh', ':split<Return><C-w>w', { desc = "Split horizontally", silent = true })
 
 -- Show netrw
-vim.keymap.set('n', '<leader>f', vim.cmd.Ex, { desc = "Display netrw" })
+vim.keymap.set('n', '<leader>ee', vim.cmd.Ex, { desc = "Display netrw" })
 
 -- Show copilot panel
-vim.keymap.set('n', '<leader>qp', ':Copilot panel<cr>', { desc = "Display Copilot's panel" })
+vim.keymap.set('n', '<leader>cp', ':Copilot panel<cr>', { desc = "Display Copilot's panel" })
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
@@ -407,19 +407,19 @@ local on_attach = function(_, bufnr)
 
   nmap('<leader>cr', vim.lsp.buf.rename, 'Code rename')
   nmap('<leader>ca', vim.lsp.buf.code_action, 'Code action')
+  nmap('<leader>cd', require('telescope.builtin').lsp_document_symbols, 'Document symbols')
+  nmap('<leader>cw', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace symbols')
 
   nmap('gd', vim.lsp.buf.definition, 'Go to definition')
   nmap('gr', require('telescope.builtin').lsp_references, 'Go to references')
   nmap('gI', vim.lsp.buf.implementation, 'Go to implementation')
-  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, 'Document symbols')
-  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace symbols')
+  nmap('gD', vim.lsp.buf.declaration, 'Go to declaration')
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
   nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
-  nmap('gD', vim.lsp.buf.declaration, 'Go to declaration')
   nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, 'Workspace add folder')
   nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, 'Workspace remove folder')
   nmap('<leader>wl', function()
