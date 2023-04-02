@@ -102,6 +102,7 @@ require('lazy').setup({
         theme = 'rose-pine',
         component_separators = '|',
         section_separators = '',
+        globalstatus = true,
       },
     },
   },
@@ -188,9 +189,6 @@ require('lazy').setup({
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
-
--- set global statusline
-vim.o.laststatus = 3
 
 -- Set highlight on search
 vim.o.hlsearch = false
