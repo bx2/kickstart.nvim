@@ -444,7 +444,27 @@ local servers = {
   -- pyright = {},
   -- rust_analyzer = {},
   -- tsserver = {},
-
+  yamlls = {
+    yaml = {
+      validate = true,
+      completion = true,
+      format = {
+        enable = true,
+      },
+      editor = {
+        formatOnType = true,
+      },
+      schemas = {
+        ["https://json.schemastore.org/workflows.json"] = "/*.gcpwf.yaml",
+        ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+      },
+      redhat = {
+        telemetry = {
+          enabled = false,
+        }
+      }
+    }
+  },
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
