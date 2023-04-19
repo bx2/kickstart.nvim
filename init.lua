@@ -62,8 +62,9 @@ require('lazy').setup({
 
   -- Useful plugin to show you pending keybinds.
   { 'folke/which-key.nvim',          opts = {} },
+
+  -- Adds git releated signs to the gutter, as well as utilities for managing changes
   {
-    -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
       -- See `:help gitsigns.txt`
@@ -107,8 +108,8 @@ require('lazy').setup({
     },
   },
 
+  -- Add indentation guides even on blank lines
   {
-    -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help indent_blankline.txt`
@@ -149,26 +150,35 @@ require('lazy').setup({
   },
 
   {
-    -- Github's copilot
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
+    "jackMort/ChatGPT.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim"
+    },
     config = function()
-      require("copilot").setup({
-        suggestion = { enabled = false },
-        panel = { enabled = false },
+      require("chatgpt").setup({
+        keymaps = {
+          chat = {
+            keymaps = {
+              close = { "jk", "kj", "<Esc>" },
+              yank_last = "<C-y>",
+              scroll_up = "<C-u>",
+              scroll_down = "<C-d>",
+              toggle_settings = "<C-o>",
+              new_session = "<C-n>",
+              cycle_windows = "<Tab>",
+            },
+          },
+          popup_input = {
+            submit = "<M-t>",
+          },
+        }
       })
-    end
+    end,
   },
 
-  {
-    -- Integrate Copilot with cmp
-    "zbirenbaum/copilot-cmp",
-    after = { "copilot.lua" },
-    config = function()
-      require("copilot_cmp").setup()
-    end
-  },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -391,7 +401,7 @@ vim.keymap.set('n', '<leader>sh', ':split<Return><C-w>w', { desc = "Split horizo
 vim.keymap.set('n', '<leader>ee', vim.cmd.Ex, { desc = "Display netrw" })
 
 -- Show copilot panel
-vim.keymap.set('n', '<leader>cp', ':Copilot panel<cr>', { desc = "Display Copilot's panel" })
+-- vim.keymap.set('n', '<leader>cp', ':Copilot panel<cr>', { desc = "Display Copilot's panel" })
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
@@ -540,7 +550,7 @@ cmp.setup {
     end, { 'i', 's' }),
   },
   sources = {
-    { name = "copilot" },
+    -- { name = "copilot" },
     { name = 'nvim_lsp' },
     { name = "path" },
     { name = 'luasnip' },
