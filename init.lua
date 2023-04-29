@@ -149,36 +149,13 @@ require('lazy').setup({
     end,
   },
 
+  -- database support
   {
-    "jackMort/ChatGPT.nvim",
-    event = "VeryLazy",
+    "tpope/vim-dadbod",
     dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim"
+      "kristijanhusak/vim-dadbod-completion",
     },
-    config = function()
-      require("chatgpt").setup({
-        keymaps = {
-          chat = {
-            keymaps = {
-              close = { "jk", "kj", "<Esc>" },
-              yank_last = "<C-y>",
-              scroll_up = "<C-u>",
-              scroll_down = "<C-d>",
-              toggle_settings = "<C-o>",
-              new_session = "<C-n>",
-              cycle_windows = "<Tab>",
-            },
-          },
-          popup_input = {
-            submit = "<M-t>",
-          },
-        }
-      })
-    end,
   },
-
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -214,8 +191,12 @@ vim.o.mouse = 'a'
 --  See `:help 'clipboard'`
 vim.o.clipboard = 'unnamedplus'
 
--- Enable break indent
-vim.o.breakindent = true
+-- indentation
+vim.o.breakindent = true -- enable break indent
+vim.o.shiftwidth = 4     -- set the number of spaces for indentation
+vim.o.softtabstop = 4    -- set the number of spaces for a soft tab
+vim.o.expandtab = true   -- convert tabs to spaces
+vim.o.autoindent = true  -- enable auto-indentation
 
 -- Save undo history
 vim.o.undofile = true
@@ -334,7 +315,19 @@ vim.keymap.set('n', '<leader>fd', require('telescope.builtin').diagnostics, { de
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'elixir', 'rust', 'tsx', 'typescript', 'help', 'vim' },
+  ensure_installed = {
+    'c',
+    'cpp',
+    'go',
+    'lua',
+    'python',
+    'elixir',
+    'rust',
+    'help',
+    'vim',
+    'sql',
+    'json',
+  },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = false,
@@ -449,11 +442,12 @@ end
 --  Add any additional override configuration in the following tables. They will be passed to
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
-  -- clangd = {},
-  -- gopls = {},
-  -- pyright = {},
-  -- rust_analyzer = {},
   -- tsserver = {},
+  gopls = {},
+  rust_analyzer = {},
+  clangd = {},
+  pyright = {},
+  jsonls = {},
   yamlls = {
     yaml = {
       validate = true,
