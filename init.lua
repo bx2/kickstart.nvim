@@ -47,13 +47,6 @@ require('lazy').setup({
       -- Automatically install LSPs to stdpath for neovim
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
-
-      -- Useful status updates for LSP
-      -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
-
-      -- Additional lua configuration, makes nvim stuff amazing!
-      'folke/neodev.nvim',
     },
   },
 
@@ -165,8 +158,8 @@ require('lazy').setup({
     end,
   },
 
-  require 'kickstart.plugins.autoformat',
-  { import = 'custom.plugins' },
+  -- require 'kickstart.plugins.autoformat',
+  -- { import = 'custom.plugins' },
 }, {})
 
 -- [[ Setting options ]]
@@ -316,8 +309,8 @@ require('nvim-treesitter.configs').setup {
     'go',
     'lua',
     'python',
-    'elixir',
-    'rust',
+    -- 'elixir',
+    -- 'rust',
     'help',
     'vim',
     'sql',
@@ -439,10 +432,10 @@ end
 local servers = {
   -- tsserver = {},
   gopls = {},
-  rust_analyzer = {},
+  -- rust_analyzer = {},
   clangd = {},
-  pyright = {},
-  jsonls = {},
+  -- pyright = {},
+  -- jsonls = {},
   yamlls = {
     yaml = {
       validate = true,
@@ -471,9 +464,6 @@ local servers = {
     },
   },
 }
-
--- Setup neovim lua configuration
-require('neodev').setup()
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
